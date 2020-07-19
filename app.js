@@ -5,7 +5,7 @@ const passportSetup = require('./config/passport-setup')
 const mongoose = require('mongoose')
 const keys = require('./config/keys')
 const cookieSession = require('cookie-session')
-const passport = require('passport')
+//const passport = require('passport')
 
 const app = express();
 
@@ -18,8 +18,8 @@ app.use(cookieSession({
 }))
 
 //initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passportSetup.initialize());
+app.use(passportSetup.session());
 
 //connect to database
 mongoose.connect(keys.mongodb.dbURI), () => {

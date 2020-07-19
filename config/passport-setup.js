@@ -20,10 +20,11 @@ passport.use(
 
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret,
-        callbackURL: '/auth/google/redirect',
+        callbackURL: '/auth/google/redirect'
     }, (accessToken, refreshToken, profile, done) => {
         //passport callback function
         //Check if user already exixt in our db
+        console.log(accessToken, 'logged');
         User.findOne({ googleid: profile.id }).then((currentUser) => {
             if (currentUser) {
                 //already have the User
@@ -45,3 +46,4 @@ passport.use(
         })
     })
 );
+module.exports = passport;
